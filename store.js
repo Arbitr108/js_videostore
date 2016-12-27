@@ -40,6 +40,10 @@ function statement(customer, movies) {
     result += `Amount owed is ${totalAmount}\n`;
     result += `You earned ${totalFrequentRenterPoints} frequent renter points\n`;
 
+    function getMovieByRentalId(rental){
+        return movies[rental.movieID];
+    }
+
     return result;
 }
 
