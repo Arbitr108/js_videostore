@@ -50,11 +50,8 @@ function statement(customer, movies, format) {
     function statementTxt() {
         let result = `Rental Record for ${customer.name}\n`;
         for (let rental of customer.rentals) {
-            let movie = movieFor(rental);
-            //print figures for this rental
-            result += `\t${movie.title}\t${getAmount(rental)}\n`;
+            result += `\t${movieFor(rental).title}\t${getAmount(rental)}\n`;
         }
-        // add footer lines
         result += `Amount owed is ${getTotalAmount(customer)}\n`;
         result += `You earned ${getTotalFrequentRenterPoints(customer)} frequent renter points\n`;
         return result;
