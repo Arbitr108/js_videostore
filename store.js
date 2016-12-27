@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 function statement(customer, movies) {
     let totalAmount = 0;
@@ -47,6 +47,15 @@ function statement(customer, movies) {
                 break;
         }
         return thisAmount;
+    }
+
+    function calculateFrequentRenterPoints(movie, rental){
+        //add frequent renter points
+        let points = 0;
+        points++;
+        // add bonus for a two day new release rental
+        if (movie.code === "new" && rental.days > 2) points++;
+        return points;
     }
     return result;
 }
