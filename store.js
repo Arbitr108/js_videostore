@@ -5,7 +5,7 @@ function statement(customer, movies) {
 
     let result = `Rental Record for ${customer.name}\n`;
 
-    var totalFrequentRenterPoints = getTotalFrequentRenterPoints();
+    var totalFrequentRenterPoints = getTotalFrequentRenterPoints(customer);
 
     for (let rental of customer.rentals) {
         let movie = movieFor(rental);
@@ -46,15 +46,11 @@ function statement(customer, movies) {
         return thisAmount;
     }
 
-    function calculateFrequentRenterPoints(rental){
-        return (movieFor(rental).code === "new" && rental.days > 2) ? 2 : 1;
-    }
-
-    function getTotalFrequentRenterPoints() {
+    function getTotalFrequentRenterPoints(customer) {
         let totalFrequentRenterPoints = 0;
 
         for (let rental of customer.rentals) {
-            totalFrequentRenterPoints += calculateFrequentRenterPoints(rental);
+            totalFrequentRenterPoints += (movieFor(rental).code === "new" && rental.days > 2) ? 2 : 1;
         }
         return totalFrequentRenterPoints;
     }
