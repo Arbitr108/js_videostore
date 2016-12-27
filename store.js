@@ -2,16 +2,21 @@
 
 function statement(customer, movies) {
     let totalAmount = 0;
-    let totalFrequentRenterPoints = 0;
+
     let result = `Rental Record for ${customer.name}\n`;
+
+    let totalFrequentRenterPoints = 0;
+    for (let rental of customer.rentals) {
+        totalFrequentRenterPoints += calculateFrequentRenterPoints(rental);
+    }
+
     for (let rental of customer.rentals) {
         let movie = movieFor(rental);
-        totalFrequentRenterPoints += calculateFrequentRenterPoints(rental);
-
         //print figures for this rental
         result += `\t${movie.title}\t${getAmount(rental)}\n`;
         totalAmount += getAmount(rental);
     }
+
     // add footer lines
     result += `Amount owed is ${totalAmount}\n`;
     result += `You earned ${totalFrequentRenterPoints} frequent renter points\n`;
