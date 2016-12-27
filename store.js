@@ -2,8 +2,6 @@
 
 function statement(customer, movies, format) {
 
-    var result = statementTxt();
-
     function movieFor(rental){
         return movies[rental.movieID];
     }
@@ -62,7 +60,10 @@ function statement(customer, movies, format) {
         return result;
     }
 
-    return result;
+    switch (format){
+        case 'txt': return statementTxt();
+        default: throw new Error(`unknown format ${format}`);
+    }
 }
 
 let customer = {
