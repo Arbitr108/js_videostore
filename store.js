@@ -57,8 +57,21 @@ function statement(customer, movies, format) {
         return result;
     }
 
+    function statementHtml() {
+        let result = `<h2>Rental Record for ${customer.name}</h2>`;
+        result += "<table>";
+        for (let rental of customer.rentals) {
+            result += `<tr><td>${movieFor(rental).title}</td><td>${getAmount(rental)}</td></tr>`;
+        }
+        result += "</table>";
+        result += `<p>Amount owed is <em>${getTotalAmount(customer)}</em></p>`;
+        result += `<p>You earned <em>${getTotalFrequentRenterPoints(customer)}</em> frequent renter points</p>`;
+        return result;
+    }
+
     switch (format){
         case 'txt': return statementTxt();
+        case 'html': return statementHtml();
         default: throw new Error(`unknown format ${format}`);
     }
 }
@@ -86,4 +99,4 @@ let movies = {
     // etc
 };
 
-console.log(statement(customer, movies, 'txt'));
+console.log(statement(customer, movies, 'html'));
