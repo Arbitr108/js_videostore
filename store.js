@@ -1,6 +1,6 @@
 "use strict";
 
-function statement(customer, movies) {
+function statement(customer, movies, format) {
 
     var result = statementTxt();
 
@@ -88,4 +88,4 @@ let movies = {
     // etc
 };
 
-console.log(statement(customer, movies));
+console.log(statement(customer, movies, 'txt'));
