@@ -5,7 +5,7 @@ function statement(customer, movies) {
     let totalFrequentRenterPoints = 0;
     let result = `Rental Record for ${customer.name}\n`;
     for (let rental of customer.rentals) {
-        let movie = movies[rental.movieID];
+        let movie = getMovieByRentalId(rental);
         let thisAmount = 0;
 
         // determine amount for each movie
