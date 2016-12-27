@@ -1,6 +1,10 @@
 "use strict";
 
 function statement(customer, movies, format) {
+    const renderer = {
+        'txt': statementTxt,
+        'html': statementHtml,
+    };
 
     function movieFor(rental){
         return movies[rental.movieID];
@@ -69,11 +73,10 @@ function statement(customer, movies, format) {
         return result;
     }
 
-    switch (format){
-        case 'txt': return statementTxt();
-        case 'html': return statementHtml();
-        default: throw new Error(`unknown format ${format}`);
-    }
+    if(renderer[format])
+        return renderer[format].call();
+    else
+        throw new Error(`unknown format "${format}"`);
 }
 
 let customer = {
@@ -99,4 +102,4 @@ let movies = {
     // etc
 };
 
-console.log(statement(customer, movies, 'html'));
+console.log(statement(customer, movies, 'txt'));
